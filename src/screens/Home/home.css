@@ -1,0 +1,6 @@
+@import './../../global/theme';
+p{
+    color: var(--secondary-700);
+    font-family: var( --font-heading);
+    font-size: var(--font-size-xxl);
+}
