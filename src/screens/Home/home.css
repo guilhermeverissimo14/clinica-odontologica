@@ -1,6 +1,19 @@
 @import './../../global/theme';
+
+.home main{
+    background-color: var(--primary-700);
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.card{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 20);
+    width: 60%;
+    height: 70%;
+}
 p{
-    color: var(--secondary-700);
-    font-family: var( --font-heading);
-    font-size: var(--font-size-xxl);
+    color: white;
 }

@@ -1,0 +1,13 @@
+header{
+    width: 100%;
+    background-color: var(--secondary-700);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+header img{
+    width: 150px;
+    float: left;
+    flex-wrap: wrap;
+}
