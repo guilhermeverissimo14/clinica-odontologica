@@ -1,10 +1,11 @@
 import{ useState, useEffect } from "react";
 
-import './home.css';
-
-import Header from '../../components/header/header';
-
 import { TrashSimple, PencilSimple, Plus } from "phosphor-react";
+
+import './home.css';
+import Header from '../../components/header/header';
+import api from "../../service/api";
+
 
 
 export default function Home() {
@@ -17,8 +18,8 @@ export default function Home() {
 
     async function fetchData() {
         try {
-            const response = await fetch("http://localhost:3000/patient-record"); // Substitua pela URL da sua API
-            const data = await response.json();
+            const response = await api.get("patient-record"); 
+            const data = await response.data;
             setPatient(data);
             console.log("Dados da API:", data);
         } catch (error) {
@@ -63,7 +64,6 @@ export default function Home() {
                 </div>
             </main>
         </div>
-
 
     )
 }
