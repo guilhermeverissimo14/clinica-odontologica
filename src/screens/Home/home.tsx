@@ -1,8 +1,30 @@
+import{ useState, useEffect } from "react";
+
 import './home.css';
+
 import Header from '../../components/header/header';
+
 import { TrashSimple, PencilSimple, Plus } from "phosphor-react";
 
+
 export default function Home() {
+
+    const [patients, setPatient] = useState<PatientRecord[]>([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    async function fetchData() {
+        try {
+            const response = await fetch("http://localhost:3000/patient-record"); // Substitua pela URL da sua API
+            const data = await response.json();
+            setPatient(data);
+            console.log("Dados da API:", data);
+        } catch (error) {
+            console.error("Erro ao buscar dados da API:", error);
+        }
+    }
 
     return (
         <div className='home'>
@@ -11,102 +33,33 @@ export default function Home() {
                 <div className='card'>
                     <div className='add-patient'>
                         <input placeholder='Nome do paciente...' type="text" />
-                        <button> <Plus/>Adicionar Paciente</button>
+                        <button> <Plus />Adicionar Paciente</button>
                     </div>
-                    <details>
-                        <summary>
-                            <span>José Guilherme Verissímo andrade <br /> 12/03/2021</span>
-                            <div className="accordion-icons">
-                                <div className="accordion-button-icons">
-                                    <button className='btn-edit'>
-                                        <PencilSimple  size={30} />
-                                    </button>
-                                    <button className='btn-delete'>
-                                        <TrashSimple size={30} />
-                                    </button>
+                    {patients.map((patient) => (
+                        <details>
+                            <summary>
+                                <span>{patient.name}<br /> {patient.date}</span>
+                                <div className="accordion-icons">
+                                    <div className="accordion-button-icons">
+                                        <button className='btn-edit'>
+                                            <PencilSimple size={30} />
+                                        </button>
+                                        <button className='btn-delete'>
+                                            <TrashSimple size={30} />
+                                        </button>
+                                    </div>
                                 </div>
+                            </summary>
+                            <div className="accordion-content">
+                                <span>Telefone:{patient.phone}</span> <br />
+                                <span>Cidade: {patient.city}</span>  <br />
+                                <span>Endereço:{patient.address}</span>  <br />
+                                <span>Numero: {patient.number}</span>  <br />
+                                <span>Dentista: {patient.doctor}</span>   <br />
+                                <span>Descrição:{patient.description}</span>  <br />
                             </div>
-                        </summary>
-                        <div className="accordion-content">
-                            <span>Telefone: (33)998527687</span> <br/>
-                            <span>Cidade: São João Evangelista</span>  <br/>
-                            <span>Endereço: Rua Coronel Antonio Borges do Amaral</span>  <br/>
-                            <span>Numero: 593</span>  <br/>
-                            <span>Dentista: Guilherme</span>   <br/>
-                            <span>Descrição: Dor de dente na parte inferior da boca e na parte superior da boca.</span>  <br/>
-                        </div>
-                    </details>
-                    <details>
-                        <summary>
-                            <span>José Guilherme Verissímo andrade <br /> 12/03/2021</span>
-                            <div className="accordion-icons">
-                                <div className="accordion-button-icons">
-                                    <button className='btn-edit'>
-                                        <PencilSimple  size={30} />
-                                    </button>
-                                    <button className='btn-delete'>
-                                        <TrashSimple size={30} />
-                                    </button>
-                                </div>
-                            </div>
-                        </summary>
-                        <div className="accordion-content">
-                            <span>Telefone: (33)998527687</span> <br/>
-                            <span>Cidade: São João Evangelista</span>  <br/>
-                            <span>Endereço: Rua Coronel Antonio Borges do Amaral</span>  <br/>
-                            <span>Numero: 593</span>  <br/>
-                            <span>Dentista: Guilherme</span>   <br/>
-                            <span>Descrição: Dor de dente na parte inferior da boca e na parte superior da boca.</span>  <br/>
-                        </div>
-                    </details>
-
-                    <details>
-                        <summary>
-                            <span>José Guilherme Verissímo andrade <br /> 12/03/2021</span>
-                            <div className="accordion-icons">
-                                <div className="accordion-button-icons">
-                                    <button className='btn-edit'>
-                                        <PencilSimple  size={30} />
-                                    </button>
-                                    <button className='btn-delete'>
-                                        <TrashSimple size={30} />
-                                    </button>
-                                </div>
-                            </div>
-                        </summary>
-                        <div className="accordion-content">
-                            <span>Telefone: (33)998527687</span> <br/>
-                            <span>Cidade: São João Evangelista</span>  <br/>
-                            <span>Endereço: Rua Coronel Antonio Borges do Amaral</span>  <br/>
-                            <span>Numero: 593</span>  <br/>
-                            <span>Dentista: Guilherme</span>   <br/>
-                            <span>Descrição: Dor de dente na parte inferior da boca e na parte superior da boca.</span>  <br/>
-                        </div>
-                    </details>
-
-                    <details>
-                        <summary>
-                            <span>José Guilherme Verissímo andrade <br /> 12/03/2021</span>
-                            <div className="accordion-icons">
-                                <div className="accordion-button-icons">
-                                    <button className='btn-edit'>
-                                        <PencilSimple size={30} />
-                                    </button>
-                                    <button className='btn-delete'>
-                                        <TrashSimple  size={30} />
-                                    </button>
-                                </div>
-                            </div>
-                        </summary>
-                        <div className="accordion-content">
-                            <span>Telefone: (33)998527687</span> <br/>
-                            <span>Cidade: São João Evangelista</span>  <br/>
-                            <span>Endereço: Rua Coronel Antonio Borges do Amaral</span>  <br/>
-                            <span>Numero: 593</span>  <br/>
-                            <span>Dentista: Guilherme</span>   <br/>
-                            <span>Descrição: Dor de dente na parte inferior da boca e na parte superior da boca.</span>  <br/>
-                        </div>
-                    </details>
+                        </details>
+                    ))}
                 </div>
             </main>
         </div>

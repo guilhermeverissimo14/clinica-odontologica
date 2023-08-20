@@ -1,0 +1,59 @@
+{
+    "patient-record": [
+      {
+        "id": 1,
+        "name": "Guilherme",
+        "phone": "(33)998527687",
+        "date": "12/11/2023",
+        "doctor": "João",
+        "description": "Estou apresentando dor de dente!",
+        "city": "Cidade A",
+        "address": "Rua A, 123",
+        "number": "123"
+      },
+      {
+        "id": 2,
+        "name": "Maria",
+        "phone": "(44)987654321",
+        "date": "10/08/2023",
+        "doctor": "Ana",
+        "description": "Sintomas de resfriado!",
+        "city": "Cidade B",
+        "address": "Rua B, 456",
+        "number": "456"
+      },
+      {
+        "id": 3,
+        "name": "Carlos",
+        "phone": "(55)912345678",
+        "date": "03/06/2023",
+        "doctor": "Pedro",
+        "description": "Consulta de rotina.",
+        "city": "Cidade C",
+        "address": "Rua C, 789",
+        "number": "789"
+      },
+      {
+        "id": 4,
+        "name": "Lúcia",
+        "phone": "(66)923456789",
+        "date": "25/02/2023",
+        "doctor": "Maria",
+        "description": "Alergia na pele.",
+        "city": "Cidade D",
+        "address": "Rua D, 101",
+        "number": "101"
+      },
+      {
+        "id": 5,
+        "name": "Fernanda",
+        "phone": "(77)934567890",
+        "date": "15/04/2023",
+        "doctor": "Ricardo",
+        "description": "Acompanhamento de gravidez.",
+        "city": "Cidade E",
+        "address": "Rua E, 202",
+        "number": "202"
+      }
+    ]
+  }
