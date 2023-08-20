@@ -7,6 +7,8 @@ import Header from '../../components/header/header';
 import api from "../../service/api";
 import AddPatientDialog from "../../components/modal-add-patient/add-patient";
 import DeletePatientDialog from "../../components/modal-delete-patient/delete-patient";
+import EditPatientDialog from "../../components/modal-update-patient/update-patient";
+import axios from "axios";
 
 
 export default function Home() {
@@ -18,6 +20,9 @@ export default function Home() {
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [selectedPatientId, setSelectedPatientId] = useState<number | null>(null);
+
+    const [editDialogOpen, setEditDialogOpen] = useState(false);
+    const [selectedPatient, setSelectedPatient] = useState<PatientRecord | null>(null);
 
     useEffect(() => {
         fetchData();
@@ -53,6 +58,33 @@ export default function Home() {
         setPatient((prevPatients) => [...prevPatients, newPatient]);
     };
 
+    //Funções para editar paciente
+    const handleEditDialogOpen = (patient: PatientRecord) => {
+        setSelectedPatient(patient);
+        setEditDialogOpen(true);
+    };
+
+    const handleEditDialogClose = () => {
+        setEditDialogOpen(false);
+    };
+
+    const handleEditPatient = async (editedPatient: PatientRecord) => {
+        try {
+          const response = await axios.put(`http://localhost:3000/patient-record/${editedPatient.id}`, editedPatient);
+          
+          // Atualizar a lista de pacientes com o paciente editado
+          const updatedPatients = patients.map(patient => 
+            patient.id === editedPatient.id ? response.data : patient
+          );
+          setPatient(updatedPatients);
+      
+          alert("Paciente atualizado com sucesso!");
+        } catch (error) {
+          console.error("Error editing patient:", error);
+        }
+      };
+
+
     //Funçoes para deletar pacientes
     const handleDeleteDialogOpen = (patientId: number) => {
         setSelectedPatientId(patientId);
@@ -83,7 +115,6 @@ export default function Home() {
                         <button className="button-add-patient" onClick={handleDialogOpen}>
                             <Plus /> Cadastrar Paciente
                         </button>
-                        <AddPatientDialog open={dialogOpen} onClose={handleDialogClose} onAdd={handleAddPatient} />
                     </div>
                     {filteredPatients.map((patient) => (
                         <details key={patient.id}>
@@ -91,17 +122,11 @@ export default function Home() {
                                 <span>{patient.name}<br /> {patient.date}</span>
                                 <div className="accordion-icons">
                                     <div className="accordion-button-icons">
-                                        <button className='btn-edit'>
+                                        <button onClick={() => handleEditDialogOpen(patient)} className='btn-edit'>
                                             <PencilSimple size={30} />
                                         </button>
                                         <button onClick={() => handleDeleteDialogOpen(patient.id)} className='btn-delete'>
                                             <TrashSimple size={30} />
-                                            <DeletePatientDialog
-                                                open={deleteDialogOpen}
-                                                onClose={handleDeleteDialogClose}
-                                                onDelete={handleDeletePatient}
-                                                patientId={selectedPatientId || 0}
-                                            />
                                         </button>
                                     </div>
                                 </div>
@@ -119,6 +144,23 @@ export default function Home() {
                 </div>
 
             </main>
+            <EditPatientDialog
+                open={editDialogOpen}
+                onClose={handleEditDialogClose}
+                onSave={handleEditPatient}
+                patient={selectedPatient}
+            />
+            <DeletePatientDialog
+                open={deleteDialogOpen}
+                onClose={handleDeleteDialogClose}
+                onDelete={handleDeletePatient}
+                patientId={selectedPatientId || 0}
+            />
+
+            <AddPatientDialog
+                open={dialogOpen}
+                onClose={handleDialogClose}
+                onAdd={handleAddPatient} />
 
         </div>
 
