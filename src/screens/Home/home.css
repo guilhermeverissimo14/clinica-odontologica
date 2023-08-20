@@ -34,22 +34,22 @@
      outline: none;
  }
 
- .add-patient button{
-    text-align: center;
-    display: flex;
-    gap:.8em;
-    padding: .5em;
-    color: var(--secondary-700);
-    background-color: transparent;
-    border: 2px solid var(--secondary-700);
-    cursor: pointer;
-    border-radius: 5px;
- }
+ .button-add-patient{
+   text-align: center;
+   display: flex;
+   gap:.8em;
+   padding: .5em;
+   color: var(--secondary-700);
+   background-color: transparent;
+   border: 2px solid var(--secondary-700);
+   cursor: pointer;
+   border-radius: 5px;
+}
 
- .add-patient button:hover{
-    background-color: var(--secondary-500);
-    color:var(--white);
- }
+.button-add-patient button:hover{
+   background-color: var(--secondary-500);
+   color:var(--white);
+}
   
 .card details {
     list-style: none;
