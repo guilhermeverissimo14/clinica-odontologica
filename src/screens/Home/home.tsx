@@ -11,6 +11,8 @@ import DeletePatientDialog from "../../components/modal-delete-patient/delete-pa
 
 export default function Home() {
 
+    const [searchTerm, setSearchTerm] = useState('');
+
     const [patients, setPatient] = useState<PatientRecord[]>([]);
     const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -21,6 +23,13 @@ export default function Home() {
         fetchData();
     }, []);
 
+    //filtrar por nome
+    const filteredPatients = patients.filter((patient) =>
+        patient.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
+    //Listar todos os registros
     async function fetchData() {
         try {
             const response = await api.get("patient-record");
@@ -48,16 +57,16 @@ export default function Home() {
     const handleDeleteDialogOpen = (patientId: number) => {
         setSelectedPatientId(patientId);
         setDeleteDialogOpen(true);
-      };
-    
-      const handleDeleteDialogClose = () => {
+    };
+
+    const handleDeleteDialogClose = () => {
         setSelectedPatientId(null);
         setDeleteDialogOpen(false);
-      };
-    
-      const handleDeletePatient = (deletedPatientId: number) => {
+    };
+
+    const handleDeletePatient = (deletedPatientId: number) => {
         setPatient((prevPatients) => prevPatients.filter((patient) => patient.id !== deletedPatientId));
-      };
+    };
 
     return (
         <div className='home'>
@@ -65,13 +74,18 @@ export default function Home() {
             <main>
                 <div className='card'>
                     <div className='add-patient'>
-                        <input placeholder='Nome do paciente...' type="text" />
+                        <input
+                            placeholder='Pesquisar nome...'
+                            type="text"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                         <button className="button-add-patient" onClick={handleDialogOpen}>
-                           <Plus/> Cadastrar Paciente
+                            <Plus /> Cadastrar Paciente
                         </button>
                         <AddPatientDialog open={dialogOpen} onClose={handleDialogClose} onAdd={handleAddPatient} />
                     </div>
-                    {patients.map((patient) => (
+                    {filteredPatients.map((patient) => (
                         <details key={patient.id}>
                             <summary>
                                 <span>{patient.name}<br /> {patient.date}</span>
@@ -83,11 +97,11 @@ export default function Home() {
                                         <button onClick={() => handleDeleteDialogOpen(patient.id)} className='btn-delete'>
                                             <TrashSimple size={30} />
                                             <DeletePatientDialog
-                                            open={deleteDialogOpen}
-                                            onClose={handleDeleteDialogClose}
-                                            onDelete={handleDeletePatient}
-                                            patientId={selectedPatientId || 0}
-                                        />
+                                                open={deleteDialogOpen}
+                                                onClose={handleDeleteDialogClose}
+                                                onDelete={handleDeletePatient}
+                                                patientId={selectedPatientId || 0}
+                                            />
                                         </button>
                                     </div>
                                 </div>
