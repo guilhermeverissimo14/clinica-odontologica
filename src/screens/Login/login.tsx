@@ -16,20 +16,27 @@ export default function Login() {
 
     async function handleLogin() {
         try {
-            const response = await axios.get("http://localhost:3000/login", {  email,  password});
-            
+            const response = await axios.post("http://localhost:3001/login", { email, password });
+
             const data = response.data;
-            if (data) {
-                localStorage.setItem("username", data.name); 
+            console.log(data);
+
+            if (data.message) {
+                localStorage.setItem("username", data.name);
                 navigate("/home");
-            } else {
-                console.log("Credenciais inválidas");
-                alert("Credenciais inválidas");
             }
         } catch (error) {
-            console.error("Erro ao fazer login:", error);
+            if (error.response && error.response.data && error.response.data.error) {
+                const errorMessage = error.response.data.error;
+                alert(errorMessage);
+                console.log(errorMessage);
+            } else {
+                console.error("Erro ao fazer login:", error);
+                alert("Erro ao fazer login. Por favor, tente novamente mais tarde.");
+            }
         }
     }
+
     return (
         <main className='content-login'>
             <div className='section'>
@@ -41,6 +48,7 @@ export default function Login() {
                     <label>Email:</label>
                     <input
                         type="email"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
@@ -48,6 +56,7 @@ export default function Login() {
                     <label>Senha:</label>
                     <input
                         type="password"
+                        placeholder="Senha"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
