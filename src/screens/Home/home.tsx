@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { TrashSimple, PencilSimple, Plus } from "phosphor-react";
 
 import './home.css';
+
 import Header from '../../components/header/header';
-import api from "../../service/api";
 import AddPatientDialog from "../../components/modal-add-patient/add-patient";
 import DeletePatientDialog from "../../components/modal-delete-patient/delete-patient";
 import EditPatientDialog from "../../components/modal-update-patient/update-patient";
+
 import axios from "axios";
 
 
@@ -19,6 +20,7 @@ export default function Home() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const [patients, setPatient] = useState<PatientRecord[]>([]);
+    
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -41,7 +43,7 @@ export default function Home() {
     //Listar todos os registros
     async function fetchData() {
         try {
-            const response = await api.get("patient-record");
+            const response = await axios.get("http://localhost:3000/patient-record");
             const data = await response.data;
             setPatient(data);
             setLoading(false);

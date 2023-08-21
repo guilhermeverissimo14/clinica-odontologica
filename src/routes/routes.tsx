@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Home from "../screens/Home/home.tsx";
 import Login from "../screens/Login/login.tsx";
@@ -10,7 +10,16 @@ function AppRoutes() {
     return (
       <Routes>
         <Route  path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} isAuthenticated={isAuthenticated} />
+        {isAuthenticated ? (
+        <Route path="/home" element={<Home />} />
+      ) : (
+        <Route
+          path="/home"
+          element={
+            <Navigate to="/" replace={true} />
+          }
+        />
+      )}
         <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>
     );

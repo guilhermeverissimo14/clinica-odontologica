@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField} from '@mui/material';
+import {
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    TextField
+} from '@mui/material';
 import InputMask from 'react-input-mask';
 
 const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, onSave, patient }) => {
