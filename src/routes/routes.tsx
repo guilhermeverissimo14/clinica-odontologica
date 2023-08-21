@@ -2,12 +2,18 @@ import { Route, Routes } from "react-router-dom";
 
 import Home from "../screens/Home/home.tsx";
 import Login from "../screens/Login/login.tsx";
+import ResetPassword from "../screens/Reset-password/reset-password.tsx";
 
-export default function AppRoutes(){
-    return(
-        <Routes>
-            <Route path="/"  element={<Login />} />
-            <Route path="/home"  element={<Home />} />
-        </Routes>
-    )
-}
+function AppRoutes() {
+    const isAuthenticated = !!localStorage.getItem('username'); // Verifica se o usuário está autenticado
+  
+    return (
+      <Routes>
+        <Route  path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} isAuthenticated={isAuthenticated} />
+        <Route path="/reset-password" element={<ResetPassword />}/>
+      </Routes>
+    );
+  }
+  
+  export default AppRoutes;

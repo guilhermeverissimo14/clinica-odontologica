@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/logo-login.png'
 
 import './login.css'
-// import api from '../../service/api';
 import axios from 'axios';
 
 
@@ -36,6 +35,9 @@ export default function Login() {
             }
         }
     }
+    function resetPassword(){
+        return navigate("/reset-password")
+    }
 
     return (
         <main className='content-login'>
@@ -62,7 +64,7 @@ export default function Login() {
                     />
 
                     <button onClick={handleLogin} >Entrar</button>
-                    <a href="#">Esqueceu a senha</a>
+                    <a onClick={resetPassword}>Esqueceu a senha</a>
                 </div>
             </div>
         </main>

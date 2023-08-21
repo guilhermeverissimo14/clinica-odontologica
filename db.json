@@ -2,12 +2,12 @@
   "patient-record": [
     {
       "id": 4,
-      "name": "Lúcia",
+      "name": "Ana Lúcia Santos",
       "phone": "(66)923456789",
       "date": "25/02/2023",
       "doctor": "Maria",
       "description": "Alergia na pele.",
-      "city": "Cidade D",
+      "city": "Lagoa Santa",
       "address": "Rua D, 101",
       "number": "101"
     },
@@ -35,15 +35,15 @@
       "id": 7
     },
     {
-      "name": "José Guilherme",
-      "phone": "(67) 67565-7657",
-      "date": "46/54/7674",
-      "doctor": "567765",
-      "description": "78578jthjhghg",
-      "city": "567567675",
-      "address": "65786758",
-      "number": "65675",
-      "id": 9
+      "name": "Geraldo Sousa Pinto",
+      "phone": "(33) 99852-7687",
+      "date": "12/11/2023",
+      "doctor": "Fábio",
+      "description": "Dor de dente",
+      "city": "Belo Horizonte",
+      "address": "Centro",
+      "number": "593",
+      "id": 10
     }
   ]
 }
