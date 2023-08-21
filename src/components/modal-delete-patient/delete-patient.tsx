@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   Dialog,
-  DialogActions,
   DialogTitle,
-  Button,
 } from '@mui/material';
 import axios from 'axios';
 
@@ -27,15 +25,17 @@ const DeletePatientDialog: React.FC<DeletePatientDialogProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Tem certeza que deseja <br/> deletar esse paciente?</DialogTitle>
-      <DialogActions>
-        <Button onClick={onClose} color="primary">
-          Cancelar
-        </Button>
-        <Button onClick={handleDelete} color="primary">
-          Deletar
-        </Button>
-      </DialogActions>
+      <div className='dialog'>
+        <DialogTitle>Tem certeza que deseja <br /> deletar esse paciente?</DialogTitle>
+        <div className='btns-form'>
+          <button className='btn-cancel' onClick={onClose} color="primary">
+            Cancelar
+          </button>
+          <button className='btn-save' onClick={handleDelete} color="primary">
+            Deletar
+          </button>
+        </div>
+      </div>
     </Dialog>
   );
 };

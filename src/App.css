@@ -6,6 +6,74 @@
   font-family: 'Roboto', sans-serif;
   background-color: var(--primary-700);
 }
-body{
+
+body {
   margin: 0;
+}
+
+.dialog {
+  background-color: var(--primary-700);
+  color: var(--white);
+}
+
+.dialog-content>.input-dialog {
+  margin-bottom: 1em;
+  flex-direction: column;
+  gap: 1em;
+
+}
+
+.input-dialog {
+  margin-bottom: 1em;
+  width: 100%;
+  display: flex;
+  background-color: var(--white);
+  border-radius: 10px;
+}
+
+.btns-form{
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-cancel {
+  background-color: red;
+  color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-cancel:hover{
+  background-color: rgb(189, 59, 59);
+   color: var(--black);
+}
+
+.btn-save {
+  background-color: green;
+  color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-save:hover{
+  background-color: rgb(34, 95, 34);
+   color: var(--black);
 }

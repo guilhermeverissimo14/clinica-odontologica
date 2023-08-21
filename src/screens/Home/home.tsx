@@ -13,6 +13,9 @@ import axios from "axios";
 
 export default function Home() {
 
+    const [loading, setLoading] = useState(true);
+
+    //filtro
     const [searchTerm, setSearchTerm] = useState('');
 
     const [patients, setPatient] = useState<PatientRecord[]>([]);
@@ -26,9 +29,10 @@ export default function Home() {
 
     useEffect(() => {
         fetchData();
+        setLoading(true);
     }, []);
 
-    //filtrar por nome
+    // filtrar por nome
     const filteredPatients = patients.filter((patient) =>
         patient.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -40,6 +44,7 @@ export default function Home() {
             const response = await api.get("patient-record");
             const data = await response.data;
             setPatient(data);
+            setLoading(false);
         } catch (error) {
             console.error("Erro ao buscar dados da API:", error);
         }
@@ -69,20 +74,21 @@ export default function Home() {
     };
 
     const handleEditPatient = async (editedPatient: PatientRecord) => {
+        
         try {
-          const response = await axios.put(`http://localhost:3000/patient-record/${editedPatient.id}`, editedPatient);
-          
-          // Atualizar a lista de pacientes com o paciente editado
-          const updatedPatients = patients.map(patient => 
-            patient.id === editedPatient.id ? response.data : patient
-          );
-          setPatient(updatedPatients);
-      
-          alert("Paciente atualizado com sucesso!");
+            const response = await axios.put(`http://localhost:3000/patient-record/${editedPatient.id}`, editedPatient);
+
+            // Atualizar a lista de pacientes com o paciente editado
+            const updatedPatients = patients.map(patient =>
+                patient.id === editedPatient.id ? response.data : patient
+            );
+            setPatient(updatedPatients);
+
+            alert("Paciente atualizado com sucesso!");
         } catch (error) {
-          console.error("Error editing patient:", error);
+            console.error("Error editing patient:", error);
         }
-      };
+    };
 
 
     //Funçoes para deletar pacientes
@@ -116,31 +122,34 @@ export default function Home() {
                             <Plus /> Cadastrar Paciente
                         </button>
                     </div>
-                    {filteredPatients.map((patient) => (
-                        <details key={patient.id}>
-                            <summary>
-                                <span>{patient.name}<br /> {patient.date}</span>
-                                <div className="accordion-icons">
-                                    <div className="accordion-button-icons">
-                                        <button onClick={() => handleEditDialogOpen(patient)} className='btn-edit'>
-                                            <PencilSimple size={30} />
-                                        </button>
-                                        <button onClick={() => handleDeleteDialogOpen(patient.id)} className='btn-delete'>
-                                            <TrashSimple size={30} />
-                                        </button>
+                    {loading ? (
+                        <div> <h3 style={{color:'white', margin:10}}>Carregando...</h3></div>
+                    ) : (
+                        filteredPatients.map((patient) => (
+                            <details key={patient.id}>
+                                <summary>
+                                    <span>{patient.name}<br /> {patient.date}</span>
+                                    <div className="accordion-icons">
+                                        <div className="accordion-button-icons">
+                                            <button onClick={() => handleEditDialogOpen(patient)} className='btn-edit'>
+                                                <PencilSimple size={30} />
+                                            </button>
+                                            <button onClick={() => handleDeleteDialogOpen(patient.id)} className='btn-delete'>
+                                                <TrashSimple size={30} />
+                                            </button>
+                                        </div>
                                     </div>
+                                </summary>
+                                <div className="accordion-content">
+                                    <span>Telefone:{patient.phone}</span> <br />
+                                    <span>Cidade: {patient.city}</span>  <br />
+                                    <span>Endereço:{patient.address}</span>  <br />
+                                    <span>Numero: {patient.number}</span>  <br />
+                                    <span>Dentista: {patient.doctor}</span>   <br />
+                                    <span>Descrição:{patient.description}</span>  <br />
                                 </div>
-                            </summary>
-                            <div className="accordion-content">
-                                <span>Telefone:{patient.phone}</span> <br />
-                                <span>Cidade: {patient.city}</span>  <br />
-                                <span>Endereço:{patient.address}</span>  <br />
-                                <span>Numero: {patient.number}</span>  <br />
-                                <span>Dentista: {patient.doctor}</span>   <br />
-                                <span>Descrição:{patient.description}</span>  <br />
-                            </div>
-                        </details>
-                    ))}
+                            </details>
+                        )))}
                 </div>
 
             </main>

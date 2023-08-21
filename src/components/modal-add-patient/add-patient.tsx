@@ -7,6 +7,9 @@ import {
   TextField,
   Button,
 } from '@mui/material';
+import InputMask from 'react-input-mask';
+
+import './add-patient.css'
 
 import axios from 'axios';
 
@@ -70,82 +73,100 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({ open, onClose, onAd
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Cadastrar Pacientes</DialogTitle>
-      <DialogContent>
-        <TextField
-          label="Name"
-          name="name"
-          value={patientData.name}
-          onChange={handleInputChange('name')}
-          fullWidth
-        />
+      <div className='dialog'>
+        <DialogTitle className='dialog-title'>Cadastrar Pacientes</DialogTitle>
+        <DialogContent className='dialog-content'>
+          <TextField
+            className='input-dialog'
+            label="Name"
+            name="name"
+            value={patientData.name}
+            onChange={handleInputChange('name')}
+            fullWidth
+          />
 
-        <TextField
-          label="Data"
-          name="date"
-          value={patientData.date}
-          onChange={handleInputChange('date')}
-          fullWidth
-        />
+          <TextField
+            className='input-dialog'
+            label="Data"
+            name="date"
+            value={patientData.date}
+            onChange={handleInputChange('date')}
+            fullWidth
+            InputProps={{
+              inputComponent: InputMask as any,
+              inputProps: {
+                mask: '99/99/9999',
+              },
+            }}
+          />
+          <TextField
+            className='input-dialog'
+            label="Telefone"
+            name="phone"
+            value={patientData.phone}
+            onChange={handleInputChange('phone')}
+            fullWidth
+            InputProps={{
+              inputComponent: InputMask as any,
+              inputProps: {
+                mask: '(99) 99999-9999',
+              },
+            }}
+          />
+          <TextField
+            className='input-dialog'
+            label="Cidade"
+            name="city"
+            value={patientData.city}
+            onChange={handleInputChange('city')}
+            fullWidth
+          />
 
-        <TextField
-          label="Telefone"
-          name="phone"
-          value={patientData.phone}
-          onChange={handleInputChange('phone')}
-          fullWidth
-        />
+          <TextField
+            className='input-dialog'
+            label="Endereço"
+            name="address"
+            value={patientData.address}
+            onChange={handleInputChange('address')}
+            fullWidth
+          />
 
-        <TextField
-          label="Cidade"
-          name="city"
-          value={patientData.city}
-          onChange={handleInputChange('city')}
-          fullWidth
-        />
+          <TextField
+            className='input-dialog'
+            label="Numero"
+            name="number"
+            value={patientData.number}
+            onChange={handleInputChange('number')}
+            fullWidth
+          />
 
-        <TextField
-          label="Endereço"
-          name="address"
-          value={patientData.address}
-          onChange={handleInputChange('address')}
-          fullWidth
-        />
+          <TextField
+            className='input-dialog'
+            label="Nomde do dentista..."
+            name="doctor"
+            value={patientData.doctor}
+            onChange={handleInputChange('doctor')}
+            fullWidth
+          />
 
-        <TextField
-          label="Numero"
-          name="number"
-          value={patientData.number}
-          onChange={handleInputChange('number')}
-          fullWidth
-        />
-
-        <TextField
-          label="Nomde do dentista..."
-          name="doctor"
-          value={patientData.doctor}
-          onChange={handleInputChange('doctor')}
-          fullWidth
-        />
-
-        <TextField
-          label="Descrição..."
-          name="description"
-          value={patientData.description}
-          onChange={handleInputChange('description')}
-          fullWidth
-        />
-
-
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose} color="primary">
-          Cancelar
-        </Button>
-        <Button onClick={handleAdd} color="primary">
-          Cadastrar
-        </Button>
-      </DialogActions>
+          <TextField
+            className='input-dialog'
+            label="Descrição..."
+            name="description"
+            value={patientData.description}
+            onChange={handleInputChange('description')}
+            fullWidth
+          />
+        </DialogContent>
+        <div className='btns-form'>
+          <button className='btn-cancel' onClick={onClose} color="primary">
+            Cancelar
+          </button>
+          <button className='btn-save' onClick={handleAdd} color="primary">
+            Cadastrar
+          </button>
+        </div>
+      </div>
     </Dialog>
   );
 };
