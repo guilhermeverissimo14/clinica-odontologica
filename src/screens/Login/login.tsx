@@ -18,10 +18,11 @@ export default function Login() {
             const response = await axios.post("http://localhost:3001/login", { email, password });
 
             const data = response.data;
-            console.log(data);
+            console.log(response.data.user[0].name);
 
             if (data.message) {
-                localStorage.setItem("username", data.name);
+                const userName = response.data.user[0].name; 
+                localStorage.setItem("username", userName);
                 navigate("/home");
             }
         } catch (error) {
@@ -35,7 +36,7 @@ export default function Login() {
             }
         }
     }
-    function resetPassword(){
+    function resetPassword() {
         return navigate("/reset-password")
     }
 

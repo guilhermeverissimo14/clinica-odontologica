@@ -100,3 +100,14 @@
  .accordion-button-icons .btn-edit{
     color: green;
  }
+
+ @media  (max-width: 748px){
+   .add-patient{
+       flex-direction: row;
+       gap: .5em;
+   }
+   .card{
+      width: 100%;
+      height: 90vh;
+   }
+}

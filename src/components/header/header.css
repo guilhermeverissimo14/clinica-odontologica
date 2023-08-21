@@ -1,4 +1,4 @@
-header{
+header {
     width: 100%;
     background-color: var(--secondary-700);
     color: #fff;
@@ -6,8 +6,50 @@ header{
     align-items: center;
     justify-content: space-around;
 }
-header img{
-    width: 150px;
+
+header img {
+    width: 100px;
     float: left;
     flex-wrap: wrap;
 }
+
+header .content-header {
+    display: flex;
+    gap: 5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-header button {
+    /* height: 30%; */
+    background-color: red;
+    color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.content-header button:hover{
+    background-color: rgb(189, 59, 59);
+    color: var(--black);
+}
+
+@media  (max-width: 748px){
+    header .content-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+    }
+    header img{
+        display: none;
+    }
+ }

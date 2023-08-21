@@ -5,7 +5,7 @@ import Login from "../screens/Login/login.tsx";
 import ResetPassword from "../screens/Reset-password/reset-password.tsx";
 
 function AppRoutes() {
-    const isAuthenticated = !!localStorage.getItem('username'); // Verifica se o usuário está autenticado
+    const isAuthenticated = !!localStorage.getItem('username'); 
   
     return (
       <Routes>

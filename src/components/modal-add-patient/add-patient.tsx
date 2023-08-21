@@ -74,7 +74,7 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({ open, onClose, onAd
   return (
     <Dialog open={open} onClose={onClose}>
       <div className='dialog'>
-        <DialogTitle className='dialog-title'>Cadastrar Pacientes</DialogTitle>
+        <DialogTitle className='dialog-title'>Cadastrar Paciente</DialogTitle>
         <DialogContent className='dialog-content'>
           <TextField
             className='input-dialog'
