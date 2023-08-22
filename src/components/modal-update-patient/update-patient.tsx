@@ -39,7 +39,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                 <DialogContent className='dialog-content'>
                     <TextField
                         className='input-dialog'
-                        label="Name"
                         name="name"
                         value={editedPatient?.name}
                         onChange={handleInputChange}
@@ -47,7 +46,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Data"
                         name="date"
                         value={editedPatient?.date}
                         onChange={handleInputChange}
@@ -61,7 +59,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Telefone"
                         name="phone"
                         value={editedPatient?.phone}
                         onChange={handleInputChange}
@@ -75,7 +72,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Cidade"
                         name="city"
                         value={editedPatient?.city}
                         onChange={handleInputChange}
@@ -83,7 +79,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Endereço"
                         name="address"
                         value={editedPatient?.address}
                         onChange={handleInputChange}
@@ -91,7 +86,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Número"
                         name="number"
                         value={editedPatient?.number}
                         onChange={handleInputChange}
@@ -104,7 +98,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Dentista"
                         name="doctor"
                         value={editedPatient?.doctor}
                         onChange={handleInputChange}
@@ -112,7 +105,6 @@ const EditPatientDialog: React.FC<EditPatientDialogProps> = ({ open, onClose, on
                     />
                     <TextField
                         className='input-dialog'
-                        label="Descrição"
                         name="description"
                         value={editedPatient?.description}
                         onChange={handleInputChange}

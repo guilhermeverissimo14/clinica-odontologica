@@ -76,7 +76,7 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({ open, onClose, onAd
         <DialogContent className='dialog-content'>
           <TextField
             className='input-dialog'
-            label="Name"
+            label="Nome"
             name="name"
             value={patientData.name}
             onChange={handleInputChange('name')}
@@ -133,6 +133,7 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({ open, onClose, onAd
             className='input-dialog'
             label="Numero"
             name="number"
+            type='number'
             value={patientData.number}
             onChange={handleInputChange('number')}
             fullWidth
@@ -140,7 +141,7 @@ const AddPatientDialog: React.FC<AddPatientDialogProps> = ({ open, onClose, onAd
 
           <TextField
             className='input-dialog'
-            label="Nomde do dentista..."
+            label="Nome do dentista..."
             name="doctor"
             value={patientData.doctor}
             onChange={handleInputChange('doctor')}
